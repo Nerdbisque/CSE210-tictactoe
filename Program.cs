@@ -81,7 +81,17 @@
     /// <returns>True if the board is full.</returns>
     static bool IsTie(List<string> board)
     {
-        return false;
+        bool checkDigit = false;
+
+        foreach (string value in board)
+        {
+            if (char.IsDigit(value[0]))
+            {
+                checkDigit = true;
+                break;
+            }
+        }
+        return !checkDigit;
     }
 
     /// <summary>Cycles through the players (from x to o and o to x)</summary>
@@ -89,16 +99,26 @@
     /// <returns>The next players sign (x or o)</returns>
     static string GetNextPlayer(string currentPlayer)
     {
-        return "x";
+        string nextPlayer = "x";
+        
+        if (currentPlayer == "x")
+        {
+            nextPlayer = "o";
+        }
+        return nextPlayer;
     }
 
     /// <summary>Gets the 1-based spot number associated with the user's choice.</summary>
     /// <param name="currentPlayer">The sign (x or o) of the current player.</param>
     /// <returns>A 1-based spot number (not a 0-based index)</returns>
     static int GetMoveChoice(string currentPlayer)
-    {
-        return 1;
-    }
+        {
+            Console.Write($"{currentPlayer}'s turn to choose a square (1-9): ");
+            string move_string = Console.ReadLine();
+
+            int choice = int.Parse(move_string);
+            return choice;
+        }
 
     /// <summary>
     /// Places the current players mark on the board at the desired spot.
@@ -109,6 +129,6 @@
     /// <param name="currentPlayer">The current player's sign (x or o)</param>
     static void MakeMove(List<string> board, int choice, string currentPlayer)
     {
-
+        int index = choice - 1;
     }
 }
