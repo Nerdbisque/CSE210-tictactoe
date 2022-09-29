@@ -38,11 +38,11 @@
     static void DisplayBoard(List<string> board)
     {
         string border = "-+-+-";
-        Console.Write($"{board[0]}|{board[1]}|{board[2]}");
-        Console.Write(border);
-        Console.Write($"{board[3]}|{board[4]}|{board[5]}");
-        Console.Write(border);
-        Console.Write($"{board[6]}|{board[7]}|{board[8]}");
+        Console.WriteLine($"{board[0]}|{board[1]}|{board[2]}");
+        Console.WriteLine(border);
+        Console.WriteLine($"{board[3]}|{board[4]}|{board[5]}");
+        Console.WriteLine(border);
+        Console.WriteLine($"{board[6]}|{board[7]}|{board[8]}");
     }
 
     /// <summary>
@@ -130,5 +130,6 @@
     static void MakeMove(List<string> board, int choice, string currentPlayer)
     {
         int index = choice - 1;
+        board[index] = currentPlayer;
     }
 }
