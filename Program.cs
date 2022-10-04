@@ -3,7 +3,7 @@
     static void Main(string[] args)
     {
 
-        List<string> board = GetNewBoard();
+        Board board = new Board();
         string currentPlayer = "x";
 
         while (!IsGameOver(board))
@@ -22,16 +22,6 @@
 
     /// <summary>Gets a new instance of the board with the numbers 1-9 in place. </summary>
     /// <returns>A list of 9 strings representing each square.</returns>
-    static List<string> GetNewBoard()
-    {
-        List<string> board = new List<string>();
-
-        for (int i = 1; i <=9; i++)
-        {
-            board.Add(i.ToString());
-        }
-        return board;
-    }
 
     /// <summary>Displays the board in a 3x3 grid.</summary>
     /// <param name="board">The board</param>
@@ -79,19 +69,9 @@
     /// <summary>Determines if the board is full with no more moves possible.</summary>
     /// <param name="board">The current board.</param>
     /// <returns>True if the board is full.</returns>
-    static bool IsTie(List<string> board)
+    static bool IsTie(Board board)
     {
-        bool checkDigit = false;
-
-        foreach (string value in board)
-        {
-            if (char.IsDigit(value[0]))
-            {
-                checkDigit = true;
-                break;
-            }
-        }
-        return !checkDigit;
+        return board.ContainsUnclaimedSpaces();
     }
 
     /// <summary>Cycles through the players (from x to o and o to x)</summary>
